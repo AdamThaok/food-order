@@ -4,6 +4,7 @@ function verifyOrder() {
   alert();
 
   // Foods selected
+  //asd
   var food1 = document.getElementById("food1").checked;
   var food2 = document.getElementById("food2").checked;
   var food3 = document.getElementById("food3").checked;
