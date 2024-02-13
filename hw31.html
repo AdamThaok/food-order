@@ -1,0 +1,235 @@
+<html>
+<head> <title>La Stella</title> 
+        
+</head>
+<body>
+
+    <script>
+
+    function verifyOrder(){ 
+  
+        
+        
+       
+        
+        // Foods selected
+        var food1 = document.getElementById('food1').checked; 	
+        var food2 = document.getElementById('food2').checked; 
+        var food3 = document.getElementById('food3').checked; 
+        var food4 = document.getElementById('food4').checked; 
+        var food5 = document.getElementById('food5').checked;
+        
+        // Amount of food
+        var food1_q = document.getElementById('food1_q').value;
+        var food2_q = document.getElementById('food2_q').value;
+        var food3_q = document.getElementById('food3_q').value;
+        var food4_q = document.getElementById('food4_q').value;
+        var food5_q = document.getElementById('food5_q').value;
+
+        
+        // Salads selected
+        var salad1 = document.getElementById('salad1').checked; 	
+        var salad2 = document.getElementById('salad2').checked; 
+        var salad3 = document.getElementById('salad3').checked; 
+        var salad4 = document.getElementById('salad4').checked; 
+        var salad5 = document.getElementById('salad5').checked;
+        
+        var salad1_q = document.getElementById('salad1_q').value;
+        var salad2_q = document.getElementById('salad2_q').value;
+        var salad3_q = document.getElementById('salad3_q').value;
+        var salad4_q = document.getElementById('salad4_q').value;
+        var salad5_q = document.getElementById('salad5_q').value;
+
+        
+        
+        
+        // Amount of salad
+
+        
+        if (!(food1 || food2 || food3 || food4 || food5 || salad1 || salad2 || salad3 || salad4 || salad5)) 
+                alert("Please select at least one item.");
+
+
+        
+        //alert massage when a input is invalid 	
+        
+   
+            
+        
+        //set order
+        var order='';
+        
+        
+        order= constructOrder(food1, food2, food3, food4, food5, salad1, salad2, salad3, salad4, salad5,food1_q, food2_q, food3_q, food4_q, food5_q, salad1_q, salad2_q, salad3_q, salad4_q, salad5_q);
+            
+        processInfo(name, lastName, phone,order);
+
+
+        
+
+            }
+        
+          
+          
+        // remove spaces before and after str 
+        function trim (str){ 
+             return str.replace (/^\s+|\s+$/g, ''); 
+        } 
+        
+        
+          
+          
+          
+        function verifyRating() {
+            var rate1 = document.getElementById('rate1').checked;
+            var rate2 = document.getElementById('rate2').checked;
+            var rate3 = document.getElementById('rate3').checked;
+            var rate4 = document.getElementById('rate4').checked;
+
+
+
+            if (!rate1 && !rate2 && !rate3 && !rate4) {
+                alert("You didn't enter a rating");
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //data access file
+        
+        
+        //save order in database
+        function processInfo(name, lastName, phone,order) {
+            var dbString = stringify(name, lastName, phone,order);
+            localStorage.setItem(name, dbString);
+        
+        }
+        
+        function stringify(name, lastName, phone, order) {
+            var nameStr = 'name: ' + name;
+            var lastNameStr = 'lastName: ' + lastName;
+            var phonerStr = 'phone: ' + phone;
+            var orderStr = 'order: ' + order;;
+            var dbStr = '{'+ nameStr + ',' + lastNameStr + ',' + phonerStr + ',' + orderStr + '}';
+            return dbStr;
+        }
+        
+        
+        
+        //save order and amount as a string
+        function constructOrder(food1, food2, food3, food4, food5, food1_q, food2_q, food3_q, food4_q, food5_q, salad1, salad2, salad3, salad4, salad5, salad1_q, salad2_q, salad3_q, salad4_q, salad5_q) {
+            var order = '';
+            
+            if (food1) {
+                order += "Oven baked salmon: " + food1_q + ", ";
+            }
+            if (food2) {
+                order += "Veal fillet: " + food2_q + ", ";
+            }
+            if (food3) {
+                order += "Steak entrecote: " + food3_q + ", ";
+            }
+            if (food4) {
+                order += "Fried shurmus: " + food4_q + ", ";
+            }
+            if (food5) {
+                order += "Cooked calamari shurmus: " + food5_q + ", ";
+            }
+        
+            // Adding salads
+            if (salad1) {
+                order += "Fattoush: " + salad1_q + ", ";
+            }
+            if (salad2) {
+                order += "One million: " + salad2_q + ", ";
+            }
+            if (salad3) {
+                order += "Watercress: " + salad3_q + ", ";
+            }
+            if (salad4) {
+                order += "Tabouleh: " + salad4_q + ", ";
+            }
+            if (salad5) {
+                order += "White cabbage: " + salad5_q + ", ";
+            }
+        
+            // Remove trailing comma and space
+            order = order.slice(0, -2);
+            
+            return order;
+        }
+
+
+        function changePage() {
+    // Change the page location
+    window.location.href = "newpage.html";
+}
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    <center>
+            <img src="bkg.jpg" width="1600" height="600" align="middle">
+        </center>
+        <h1 style="text-align:center;">La Stella Menu</h1>
+        </br>
+        <h2 style="text-align:left;">Main meals & Salads:</h2> 
+            <center> <table style="width:70%;">
+             <tr><th><h3>Meal/Salad</h3></th><th><h3>Image</h3></th><th><h3>Price</h3></th><th><h3>Select</h3></th><th><h3>Amount</h3></th></tr>
+             <tr><td><h3 style="text-align:center;">Oven baked salmon</h3></td><td><center><img src="food1.jpg" width="100" height="100"></center></td>
+             <td style="text-align:center;"><h3>90 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="food1" value="Oven baked salmon"></td><td><center><input type="text" id="food1_q" name="food1_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Veal fillet</h3></td><td><center><img src="food2.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>120 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="food2" value="Veal fillet"></td><td><center><input type="text" id="food2_q" name="food2_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Steak entrecote</h3></td><td><center><img src="food3.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>125 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="food3" value="Steak entrecote"></td><td><center><input type="text" id="food3_q" name="food3_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Fried shurmus</h3></td><td><center><img src="food4.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>85 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="food4" value="Fried shurmus"></td><td> <center><input type="text" id="food4_q" name="food4_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Cooked calamari shurmus</h3></td><td><center><img src="food5.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>90 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="food5" value="Cooked calamari shurmus"></td><td><center><input type="text" id="food5_q" name="food5_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Fattoush</h3></td><td><center><img src="salad1.jpg" width="100" height="100"></center></td>
+             <td style="text-align:center;"><h3>60 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="salad1" value="Fattoush"></td><td><center><input type="text" id="salad1_q" name="salad1_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">One million</h3></td><td><center><img src="Salad2.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>55 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="salad2" value="One million"></td><td><center><input type="text" id="salad2_q" name="salad2_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Watercress</h3></td><td><center><img src="salad3.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>65 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="salad3" value="Watercress"></td><td><center><input type="text" id="salad3_q" name="salad3_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">Tabouleh</h3></td><td><center><img src="salad4.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>45 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="salad4" value="Tabouleh"></td><td><center><input type="text" id="salad4_q" name="salad4_q" value="1"></center></tr>
+             <tr><td><h3 style="text-align:center;">White cabbage</h3></td><td><center><img src="salad5.jpg" width="100" height="100"></center>
+             </td><td style="text-align:center;"><h3>50 NIS</h3></td><td style="text-align:center;"><input type="checkbox" id="salad5" value="White cabbage"></td><td><center><input type="text" id="salad5_q" name="salad5_q" value="1"></center></tr>
+           </table></center>
+           <button type="button" onclick="verifyOrder()">order</button>
+           
+           </br>
+ </body>
+ </html>
+ 
+ 
+ 
+
